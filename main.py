@@ -13,7 +13,18 @@
 # add("peanut_butter", "marshmellow_fluff") //=> NaN
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def add_list(*arguments):
+    total = 0
+    for argument in arguments:
+        if isinstance(argument, (int, float)):
+            total += argument
+        else:
+            return "NaN"
+    return total
+
+print(add_list(1,2,3,4))
+print(add_list())
+print(add_list(1,2,3, "four"))
 #-----------------------------------------------
 
 
@@ -30,7 +41,13 @@
 # remove_ends('a'); //=> "" (empty string)
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def remove_ends(s):
+    if len(s) < 3:
+        return ""
+    return s[1:-1]
+
+print(remove_ends('Bilbo Baggins'))
+print(remove_ends('Al'))
 #-----------------------------------------------
 
 
@@ -49,7 +66,14 @@
 # is_palindrome(''); //=> true
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+
+    return s == s[::-1]
+
+print(is_palindrome('rotor'))
+print(is_palindrome('A nut for a jar of tuna'))
+print(is_palindrome(''))
 #-----------------------------------------------
 
 
@@ -67,7 +91,20 @@
 # is_prime(200) //=> false
 
 #-----------------------------------------------
-# Solution goes here ->
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n%i == 0:
+            return False
+    return True
+
+print(is_prime(2))
+print(is_prime(3))
+print(is_prime(4))
+print(is_prime(11))
 #-----------------------------------------------
 
 
@@ -89,7 +126,34 @@
 
 
 #-----------------------------------------------
-# Solution Goes Here ->
+
+#tax - total *.085
+#sum for the price of all items in cart
+#cost += 10 or 5 for specified states
+
+def calculate_total_cost(shopping_cart, state):
+    subtotal = sum(item["price"] for item in shopping_cart)
+    sales_tax = subtotal * 0.085
+
+    total_cost = subtotal + sales_tax
+
+    if state in ['HI', 'AK', 'TX', 'FL']:
+        total_cost += 10
+    elif state in['AL', 'MS', 'NV', 'IL']:
+        total_cost +=5
+    return total_cost
+
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
+
+state = "AL"
+total_cost = calculate_total_cost(shopping_cart, state)
+print("Total Cost:", total_cost)
 #-----------------------------------------------
 
 
@@ -106,7 +170,21 @@
 # fizz_buzz(ham_sandwich) //=> "ham_sandwich is not a Number"
 
 #-----------------------------------------------
-# Solution Goes Here ->
+def fizz_buzz(n):
+    if not isinstance(n, int):
+        return f"{n} is not a number"
+    
+    for num in range(1, n + 1):
+        string = ''
+        if num % 3 == 0:
+            string = string + "Fizz"
+        if num % 5 == 0:
+            string = string + "Buzz"
+        if num % 5 != 0 and num % 3 != 0:
+            string = string + str(num)
+        print(string)
+
+print(fizz_buzz(50))
 #-----------------------------------------------
 
 
@@ -145,5 +223,25 @@
 
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def chess_board(rows, columns):
+    board = []
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            #if both row and column are even, or both row and column are odd, place '0'
+            if (i % 2 == 0 and j % 2 == 0) or (i % 2 !=0 and j % 2 != 0):
+                row.append('O')
+            else:
+                row.append('X')
+        board.append(row)
+    return board #if code ends here, only returns one line, not rows and columns
+
+def print_board(board):
+    for row in board:
+        print (row)
+
+
+chessboard = chess_board(6, 4)
+print_board(chessboard)
+
 #-----------------------------------------------
