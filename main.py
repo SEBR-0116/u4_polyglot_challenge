@@ -12,12 +12,20 @@
 # add(7,-12) //=> -5
 # add("peanut_butter", "marshmellow_fluff") //=> NaN
 
-#-----------------------------------------------
-# Solution Goes Here - >
-#-----------------------------------------------
+def add_list(*args):
+    if not args:
+        return 0
 
+    total = 0
+    for arg in args:
+        if isinstance(arg, (int, float)):
+            total += arg
+        else:
+            return "NaN"
 
+    return total
 
+print(add_list(10,20))
 
 # Challenge 2: remove_ends
 
@@ -29,9 +37,13 @@
 # remove_ends('Led Zeppelin Rules'); //=> "ed Zeppelin Rule"
 # remove_ends('a'); //=> "" (empty string)
 
-#-----------------------------------------------
-# Solution Goes Here - >
-#-----------------------------------------------
+def remove_ends(string):
+    if len(string)<3:
+         return " " 
+    else:
+        return string[1:-1]
+
+print(remove_ends("wlecome"))
 
 
 
@@ -48,9 +60,9 @@
 # is_palindrome('A nut for a jar of tuna'); //=> true
 # is_palindrome(''); //=> true
 
-#-----------------------------------------------
-# Solution Goes Here - >
-#-----------------------------------------------
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
 
 
 
@@ -66,11 +78,18 @@
 # is_prime(29) //=> true
 # is_prime(200) //=> false
 
-#-----------------------------------------------
-# Solution goes here ->
-#-----------------------------------------------
 
-
+def is_prime(num1):
+    if num1 <= 1:
+        return False
+    if num1 == 2:
+        return True
+    if num1 % 2 == 0:
+        return False
+    for i in range(3, int(num1**0.5) + 1, 2):
+        if num1 % i == 0:
+            return False
+    return True
 
 
 # Challenge 5: total_checkout_cost
@@ -79,19 +98,32 @@
 
 # Your function should take the list and the user's homestate as arguments
 
-# shopping_cart = [ 
-#   {"item": "headphones", "price": 25},
-#   {"item": "speakers", "price": 40 },
-#   {"item": "microphone", "price": 70},
-#   {"item": "lamp", "price": 15 },
-#   {"item": "tower fan", "price": 35 },
-# ]
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
 
+def total_checkout_cost(shopping_cart, homestate):
+    sales_tax_rate = 0.085
+    shipping_fee = 0
+    
+    if homestate in ['HI', 'AK', 'TX', 'FL']:
+        shipping_fee = 10
+    elif homestate in ['AL', 'MS', 'NV', 'IL']:
+        shipping_fee = 5
+    
+    total_cost = sum(item['price'] for item in shopping_cart)
+    total_cost += total_cost * sales_tax_rate
+    total_cost += shipping_fee
+    
+    return total_cost
 
-#-----------------------------------------------
-# Solution Goes Here ->
-#-----------------------------------------------
-
+homestate = 'NY'
+total_cost = total_checkout_cost(shopping_cart, homestate)
+print(f"Total cost: ${total_cost}")
 
 # Challenge 6: fizz_buzz
 
@@ -105,12 +137,20 @@
 # fizz_buzz(22) //=> 22 ""
 # fizz_buzz(ham_sandwich) //=> "ham_sandwich is not a Number"
 
-#-----------------------------------------------
-# Solution Goes Here ->
-#-----------------------------------------------
 
+def fizz_buzz(num):
+    if not isinstance(num, int):
+        return f"{num} is not a number"
 
+    result = ""
+    if num % 3 == 0:
+        result += "Fizz"
+    if num % 5 == 0:
+        result += "Buzz"
 
+    return f"{num} {result}".strip()
+
+print(fizz_buzz(10)) 
 
 # Challenge 7 - Chessboard Creator
 
@@ -144,6 +184,21 @@
 # The first row should always start with a white space 'O'
 
 
-#-----------------------------------------------
-# Solution Goes Here - >
-#-----------------------------------------------
+def chess_board(rows, columns):
+    board = []
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            if (i + j) % 2 == 0:
+                row.append("O")
+            else:
+                row.append("X")
+        board.append(row)
+    return board
+
+board1 = chess_board(6, 4)
+for row in board1:
+    print(row)
+
+
+
