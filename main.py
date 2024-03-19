@@ -14,9 +14,23 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def add_list(*args):
+    if not args:
+        return 0
+    total = 0
+    for num in args:
+        if isinstance(num, (int, float)):
+            total += num
+        else:
+            return "NaN"
+    return total
+
+print(add_list(1))
+print(add_list(1, 50, 1.23))
+print(add_list(7, -12))
+print(add_list('peanut_butter', 'marshmellow_fluff'))
 #-----------------------------------------------
-
-
 
 
 # Challenge 2: remove_ends
@@ -31,8 +45,16 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
-#-----------------------------------------------
 
+def remove_ends(string):
+    if len(string) < 3:
+        return ""
+    
+    return string[1:-1]
+
+print(remove_ends('Led Zeppelin Rules'))
+print(remove_ends('a'))
+#-----------------------------------------------
 
 
 # Challenge 3: is_palindrome
@@ -50,8 +72,17 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
-#-----------------------------------------------
 
+def is_palindrome(string):
+    processed_string = string.lower().replace(" ", "")
+
+    return processed_string == processed_string[::-1]
+
+print(is_palindrome('SEI Rocks'))
+print(is_palindrome('rotor'))
+print(is_palindrome('A nut for a jar of tuna'))
+print(is_palindrome(''))
+#-----------------------------------------------
 
 
 # Challenge 4: is_prime
@@ -68,9 +99,23 @@
 
 #-----------------------------------------------
 # Solution goes here ->
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    
+    for i in range(2, int(num**0.5) +1):
+        if num % i == 0:
+            return False
+        
+    return True
+
+print(is_prime(2))
+print(is_prime(3))
+print(is_prime(4))
+print(is_prime(29))
+print(is_prime(200))
 #-----------------------------------------------
-
-
 
 
 # Challenge 5: total_checkout_cost
@@ -90,6 +135,34 @@
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def total_checkout_cost(shopping_cart, homestate):
+    sales_tax_rate = 00.85
+
+    if homestate in ["HI", "AK", "TX", "FL"]:
+        shopping_fee = 10
+    
+    elif homestate in ["AL", "MS", "NV", "IL"]:
+        shopping_fee = 5
+
+    else:
+        shopping_fee = 0
+
+    subtotal = sum(item['price'] for item in shopping_cart)
+
+    total_cost = subtotal * (1 + sales_tax_rate) + shopping_fee
+
+    return total_cost
+
+shopping_cart = [
+    {"item": 'headphones', 'price': 25},
+    {"item": 'speaker', 'price': 40},
+    {"item": 'microphone', 'price': 70},
+    {"item": 'lamp', 'price': 15},
+    {"item": 'tower fan', 'price': 35},
+]
+
+print("Total cost with sales tax and shipping:", total_checkout_cost(shopping_cart, "TX"))
 #-----------------------------------------------
 
 
@@ -107,9 +180,28 @@
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def fizz_buzz(num):
+    if not isinstance(num, int):
+        return str(num) + " is not a number"
+    
+    result = ""
+
+    if num % 3 == 0:
+        result += "Fizz"
+    
+    if num % 5 == 0:
+        result += "Buzz"
+
+    return str(num) + " " + result
+
+
+print(fizz_buzz(10)) 
+print(fizz_buzz(30)) 
+print(fizz_buzz(18)) 
+print(fizz_buzz(22)) 
+print(fizz_buzz("ham_sandwich")) 
 #-----------------------------------------------
-
-
 
 
 # Challenge 7 - Chessboard Creator
@@ -146,4 +238,23 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def chess_board(rows, columns):
+    board = []
+    for i in range(rows):
+        row = []
+    for j in range(columns):
+
+        if (i + j) % 2 == 0:
+            row.append("0")
+        
+        else:
+            row.append("X")
+
+    board.append(row)
+
+    return board
+
+print(chess_board(6, 4))
+print(chess_board(3, 7))
 #-----------------------------------------------
