@@ -14,6 +14,21 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def add_list(*args):
+    total = 0
+    for num in args:
+        if isinstance(num, (int, float)):
+            total += num
+        else:
+            return "NaN"
+    return total
+    
+# print(add_list(1,2,3))
+
+
+
+
 #-----------------------------------------------
 
 
@@ -31,6 +46,15 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def remove_ends(s):
+    if len(s)<3:
+        return " "
+    else:
+        return s[1:-1]
+    
+# print(remove_ends("Today is Monday"))
+# print(remove_ends("Hi"))
 #-----------------------------------------------
 
 
@@ -50,6 +74,16 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+    
+
+def is_palindrome(a):
+        a = a.lower().replace("","")
+        if len(a) <= 1:
+            return True 
+        return a == a[::-1]
+    
+# print(is_palindrome("radar"))
+# print(is_palindrome("Hello"))
 #-----------------------------------------------
 
 
@@ -68,6 +102,18 @@
 
 #-----------------------------------------------
 # Solution goes here ->
+
+## 2 is the smallest prime number 
+def is_prime(x):
+    if x < 2:  
+        return False
+    
+    for i in range(2, int(x**0.5) + 1):
+        if x % i == 0: 
+            return False
+    
+    return True 
+# print(is_prime(2)) 
 #-----------------------------------------------
 
 
@@ -79,17 +125,44 @@
 
 # Your function should take the list and the user's homestate as arguments
 
-# shopping_cart = [ 
-#   {"item": "headphones", "price": 25},
-#   {"item": "speakers", "price": 40 },
-#   {"item": "microphone", "price": 70},
-#   {"item": "lamp", "price": 15 },
-#   {"item": "tower fan", "price": 35 },
-# ]
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
 
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def calculate_total_cost(items_list, homestate):
+    sales_tax_rate = 0.085  
+    shipping_fee = 0
+    
+    for item in items_list:
+        item_price = item['price']
+        total_item_cost = item_price
+        
+        # Calculate sales tax for the item
+        sales_tax = total_item_cost * sales_tax_rate
+        
+        # Add sales tax to the total cost
+        total_item_cost += sales_tax
+        
+        # Add shipping fee based on homestate
+        if homestate in ['HI', 'AK', 'TX', 'FL']:
+            shipping_fee += 10
+        elif homestate in ['AL', 'MS', 'NV', 'IL']:
+            shipping_fee += 5
+    
+    # Add shipping fee to the total cost
+    total_cost = sum(item['price'] for item in items_list) + shipping_fee
+    
+    return total_cost
+
+# print( calculate_total_cost(shopping_cart,"AL"))
 #-----------------------------------------------
 
 
@@ -107,6 +180,20 @@
 
 #-----------------------------------------------
 # Solution Goes Here ->
+def fizzbuzz(num):
+    if not isinstance(num, int):
+        return "is not a number"
+    
+    for i in range(1, num + 1):
+        if i % 3 == 0 and i % 5 == 0:
+            print("FizzBuzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        elif i % 5 == 0:
+            print("Buzz")
+        else:
+            print(i)
+# fizzbuzz(50)
 #-----------------------------------------------
 
 
@@ -146,4 +233,25 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def create_chessboard(rows, columns):
+    chessboard = []
+    for row in range(rows):
+        row_data = []
+        for col in range(columns):
+            if (row + col) % 2 == 0:
+                row_data.append('O')  # White cell
+            else:
+                row_data.append('X')  # Black cell
+        chessboard.append(row_data)
+    return chessboard
+
+# Test the function
+rows = 6
+columns = 4
+chessboard = create_chessboard(rows, columns)
+
+# Print the chessboard pattern
+for row in chessboard:
+    print(row)
+
 #-----------------------------------------------
