@@ -14,9 +14,17 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def add_list(*args):
+    total = 0
+    for num in args:
+        if isinstance(num, (int, float)):
+            total+= num
+        else:
+            retrun "NaN"    
+    return total
+print (add_list(4,16,6,1,24,2))
+
 #-----------------------------------------------
-
-
 
 
 # Challenge 2: remove_ends
@@ -31,6 +39,16 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def remove_ends(string):
+    if len(string)<3:
+        return " "
+    else:
+        return string[1:-1]    
+
+print (remove_ends('The sky is blue'))
+print (remove_ends('Udo'))
+
 #-----------------------------------------------
 
 
@@ -68,6 +86,18 @@
 
 #-----------------------------------------------
 # Solution goes here ->
+
+def is_prime (num):
+    if num <= 1:
+        return false
+
+    for i in range(4, int(num ** 0.5)+1):
+        if num % i == 0:
+            return False   
+    
+    retrun True
+    
+print (is_prime(6))
 #-----------------------------------------------
 
 
