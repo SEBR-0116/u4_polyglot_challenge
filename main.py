@@ -120,8 +120,6 @@ print(is_paliondrom("theatre"))
 # is_prime(29) //=> true
 # is_prime(200) //=> false
 
-
-    
 #-----------------------------------------------
 # Solution goes here ->
 
@@ -137,7 +135,8 @@ def is_prime(n):
 
 print(is_prime(1))
 print(is_prime(2))
-print(is_prime(18))print(is_prime(0))
+print(is_prime(18))
+print(is_prime(0))
 #-----------------------------------------------
 
 
@@ -145,18 +144,36 @@ print(is_prime(18))print(is_prime(0))
 
 # Challenge 5: total_checkout_cost
 
-# Prompt -> Using this list of dictionary items, write a function to calculate the total cost if there is an 8.5% sales tax attached to each item. Then set up a conditional that adds a $10 Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. All other states recieve free shipping. 
+# Prompt -> Using this list of dictionary items, write a function to calculate the total cost 
+# if there is an 8.5% sales tax attached to each item. Then set up a conditional that adds a $10 
+# Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. 
+# All other states recieve free shipping. 
 
 # Your function should take the list and the user's homestate as arguments
 
-# shopping_cart = [ 
-#   {"item": "headphones", "price": 25},
-#   {"item": "speakers", "price": 40 },
-#   {"item": "microphone", "price": 70},
-#   {"item": "lamp", "price": 15 },
-#   {"item": "tower fan", "price": 35 },
-# ]
 
+
+def total_cost(shopping_cart, homestate):
+    sales_tax = 8.5 /100
+    additional_fee_states = ['HI', 'FL', 'TX', 'AK'] 
+    total_price = sum(item['price']for item in shopping_cart)
+
+    if homestate in additional_fee_states:
+        total_price += 10
+
+    total_price_with_tax = total_price * (1 + sales_tax)
+    return total_price_with_tax    
+
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
+
+homestate = 'TX'
+print("Total cost with tax and additional fee:", total_cost(shopping_cart, homestate))
 
 #-----------------------------------------------
 # Solution Goes Here ->
