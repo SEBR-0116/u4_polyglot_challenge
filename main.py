@@ -14,6 +14,22 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def add_list(list):
+    if len(list) == 0:
+        return 0
+    else:
+        for x in list:
+            if isinstance(x,(int,float)):
+                return sum(list)
+            else:
+                return 'NaN'
+
+print(add_list([]))
+print(add_list([7,50,1.23]))
+print(add_list([7,50,-1.23]))
+print(add_list(['a','b','c']))
+    
+    
 #-----------------------------------------------
 
 
@@ -31,6 +47,14 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def remove_ends(str1):
+    if len(str1) < 3:
+            return ''
+    else:
+        return str1[1:len(str1)-1]
+
+print(remove_ends("Led Zeppelin Rules"))        
+    
 #-----------------------------------------------
 
 
@@ -50,6 +74,31 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def is_palindrome(word):
+    list_no_spaces =''
+    if len(word) < 2:
+        return True
+    else:
+        for x in word:
+            if x != ' ':
+                list_no_spaces += x.lower()
+        
+        y = 0 
+        z = len(list_no_spaces) -1
+        
+        while y < z:
+            if list_no_spaces[y] != list_no_spaces[z]:
+                return False
+            y += 1
+            z -= 1
+        return True
+        
+    # print(list_no_spaces)
+print(is_palindrome('app l pp a'))
+print(is_palindrome('SEI Rocks'))
+print(is_palindrome('rotor'))
+print(is_palindrome('A nut for a jar of tuna'))
+print(is_palindrome(''))
 #-----------------------------------------------
 
 
