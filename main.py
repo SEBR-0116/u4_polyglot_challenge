@@ -151,7 +151,8 @@ print(is_prime(0))
 
 # Your function should take the list and the user's homestate as arguments
 
-
+#-----------------------------------------------
+# Solution Goes Here ->
 
 def total_cost(shopping_cart, homestate):
     sales_tax = 8.5 /100
@@ -160,6 +161,8 @@ def total_cost(shopping_cart, homestate):
 
     if homestate in additional_fee_states:
         total_price += 10
+    elif not homestate in additional_fee_states:
+        return "Free Shipping!"
 
     total_price_with_tax = total_price * (1 + sales_tax)
     return total_price_with_tax    
@@ -174,15 +177,15 @@ shopping_cart = [
 
 homestate = 'TX'
 print("Total cost with tax and additional fee:", total_cost(shopping_cart, homestate))
-
-#-----------------------------------------------
-# Solution Goes Here ->
 #-----------------------------------------------
 
 
 # Challenge 6: fizz_buzz
 
-# Prompt -> Write a program that prints the numbers from 1 to 50. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”
+# Prompt -> Write a program that prints the numbers from 1 to 50. 
+# But for multiples of three print “Fizz” instead of the number and 
+# for the multiples of five print “Buzz”. For numbers which are 
+# multiples of both three and five print “FizzBuzz”
 # If your argument is not a number, return "is not a number"
 
 # Examples:
@@ -194,6 +197,27 @@ print("Total cost with tax and additional fee:", total_cost(shopping_cart, homes
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def fizzbuzz(n):
+    if not isinstance(n, int) and not isinstance(n, float):
+        return "is not a number"
+    
+    result = []
+    for i in range(1, 51):
+        if i % 3 == 0 and i % 5 == 0:
+            result.append("FizzBuzz")
+        elif i % 3 == 0:
+            result.append("Fizz")
+        elif i % 5 == 0:
+            result.append("Buzz")
+        else:
+            result.append(i)
+    return result
+
+print(fizzbuzz(50))
+print(fizzbuzz(3))
+print(fizzbuzz(35))
+print(fizzbuzz("Howdy"))
 #-----------------------------------------------
 
 
@@ -208,6 +232,8 @@ print("Total cost with tax and additional fee:", total_cost(shopping_cart, homes
 # Your task is to write a function that takes two integers rows and columns and returns a chessboard pattern as a two dimensional array.
 
 # So chess_board(6,4) should return an array like this:
+
+
 
 [
     ["O","X","O","X"],
@@ -230,7 +256,32 @@ print("Total cost with tax and additional fee:", total_cost(shopping_cart, homes
 
 # The first row should always start with a white space 'O'
 
-
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def chess_board(rows, colomns):
+#---- Create empty list called board ------##
+    board = []
+#---- Nest loop to generate row of chessboard -----##
+    #-- Row index is 'r' ----#
+    for r in range(rows):
+        row = []
+    #-- Colomn index is 'c' ----#
+        for c in range(colomns):
+#---- Condition to determine place x or o ---------##
+            if (r + c) % 2 == 0:
+                if r == 0 and c == 0:
+                    row.append('o')
+                else:
+                    row.append('x')
+            else:
+                row.append('o')
+        board.append(row)
+    return board
+
+rows = 4
+colomns = 6
+chessboard = chess_board(rows, colomns)
+for row in chessboard:
+    print(row)
 #-----------------------------------------------
