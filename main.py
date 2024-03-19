@@ -1,10 +1,10 @@
 # Challenge 1:  add_List
 
 # Prompt:
-# - Write a function called add_list that accepts any quantity of numbers as arguments, adds them together and returns the resulting sum.
+# - Write a function called add_list that accepts any quantity of numbers as arguments, 
+# adds them together and returns the resulting sum.
 # - If called with no arguments, return 0 (zero).
 # - If any non-number arguments are in the argument, return "NaN"
-
 
 # Examples:
 # add(1) //=> 1
@@ -14,6 +14,21 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def add_list(*args):
+    try:
+        return sum(args)
+    except TypeError:
+        return "NaN"
+
+result = add_list(5, 6, 7, 8, 9)
+print("Sum:", result)
+
+result = add_list(10, 20, 30)
+print("Sum:", result)
+
+result = add_list('a', 'b')
+print("Sum:", result)
 #-----------------------------------------------
 
 
@@ -22,7 +37,8 @@
 # Challenge 2: remove_ends
 
 # Prompt:
-# - Write a function called remove_ends that accepts a single string argument, then returns the a string with the first and last characters removed.
+# - Write a function called remove_ends that accepts a single string argument, 
+# then returns the a string with the first and last characters removed.
 # - If the length of the string argument is less than 3, return an empty string.
 
 # Examples:
@@ -31,6 +47,21 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def remove_ends(string):
+    if len(string) < 3:
+        return " "
+    else: 
+        return string[1: -1]
+    
+input_string = "Mia"
+print(remove_ends(input_string))
+
+input_string = "Boom"
+print(remove_ends(input_string))
+
+input_string = "Vanderpump Rules"
+print(remove_ends(input_string))
 #-----------------------------------------------
 
 
@@ -38,10 +69,12 @@
 # Challenge 3: is_palindrome
 
 # Prompt:
-# - Write a function called is_palindrome that accepts a single string argument, then returns true or false depending upon whether or not the string is a palindrome.
+# - Write a function called is_palindrome that accepts a single string argument, 
+# then returns true or false depending upon whether or not the string is a palindrome.
 # - A palindrome is a word or phrase that is the same forward or backward.
 # - Casing and spaces are not included when considering whether or not a string is a palindrome.
 # - If the length of the string is 0 or 1, return true.
+
 # Examples:
 # is_palindrome('SEI Rocks'); //=> false
 # is_palindrome('rotor'); //=> true
@@ -50,6 +83,25 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+
+def is_paliondrom(string):
+    cleaned_string = ''.join(char for char in string if char.isalnum())
+
+    start = 0
+    end = len(cleaned_string) -1
+
+    while start < end:
+        if cleaned_string[start] != cleaned_string[end]:
+            return False
+        start += 1
+        end -= 1
+    return True
+
+print(is_paliondrom("radar"))
+print(is_paliondrom("race car"))
+print(is_paliondrom("yellow"))
+print(is_paliondrom("madam"))
+print(is_paliondrom("theatre"))
 #-----------------------------------------------
 
 
@@ -57,8 +109,10 @@
 # Challenge 4: is_prime
 
 # Prompt:
-# - Write a function named is_prime that returns true when the integer argument passed to it is a prime number and false when the argument passed to it is not prime.
+# - Write a function named is_prime that returns true when the integer argument passed to it is a prime 
+# number and false when the argument passed to it is not prime.
 # - A prime number is a whole number (integer) greater than 1 that is evenly divisible by only itself.
+
 # Examples:
 # is_prime(2) //=> true
 # is_prime(3) //=> true 
@@ -66,8 +120,24 @@
 # is_prime(29) //=> true
 # is_prime(200) //=> false
 
+
+    
 #-----------------------------------------------
 # Solution goes here ->
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    
+    for x in range(2, int(n** 0.5) + 1):
+            if n % x == 0:
+                return False
+            
+    return True
+
+print(is_prime(1))
+print(is_prime(2))
+print(is_prime(18))print(is_prime(0))
 #-----------------------------------------------
 
 
