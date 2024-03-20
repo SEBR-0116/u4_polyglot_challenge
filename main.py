@@ -273,12 +273,13 @@ def chessboard_creator(row,column):
         for c in range(column):
             # row_pattern.append(c)
             # print(row_pattern)
-            if c + r % 2 == 0:
+            if (c + r) % 2 == 0:
                 row_pattern.append(white_space)
-            elif c + r % 2 != 0:
+            else:
                 row_pattern.append(black_space)
             print(row_pattern)
         cell_list.append(row_pattern)
     return cell_list    
 print(chessboard_creator(3,7))
+print(chessboard_creator(6,4))
 #-----------------------------------------------
