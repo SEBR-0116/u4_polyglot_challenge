@@ -117,6 +117,27 @@ print(is_palindrome(''))
 
 #-----------------------------------------------
 # Solution goes here ->
+
+def isPrime(input_num):
+    x = 1
+    if input_num <= 1:
+        return False
+        
+    for x in range(2,input_num -1):
+        if input_num % x == 0:
+            print(f"test  {input_num%x}")
+            return False
+    print(f"test  {input_num%x}")
+    return True
+            
+print(f"29 is prime : {isPrime(29)}")
+print(f"42 is prime : {isPrime(42)}")
+print(f"141 is prime : {isPrime(141)}")
+print(f"2 is prime : {isPrime(2)}")
+print(f"3 is prime : {isPrime(3)}")
+print(f"4 is prime : {isPrime(4)}")
+print(f"200 is prime : {isPrime(200)}")
+
 #-----------------------------------------------
 
 
@@ -124,21 +145,45 @@ print(is_palindrome(''))
 
 # Challenge 5: total_checkout_cost
 
-# Prompt -> Using this list of dictionary items, write a function to calculate the total cost if there is an 8.5% sales tax attached to each item. Then set up a conditional that adds a $10 Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. All other states recieve free shipping. 
+# Prompt -> Using this list of dictionary items, write a function to calculate the total cost if there is an 8.5% sales tax attached to each item.
+# Then set up a conditional that adds a $10 Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. 
+# All other states recieve free shipping. 
 
 # Your function should take the list and the user's homestate as arguments
 
-# shopping_cart = [ 
-#   {"item": "headphones", "price": 25},
-#   {"item": "speakers", "price": 40 },
-#   {"item": "microphone", "price": 70},
-#   {"item": "lamp", "price": 15 },
-#   {"item": "tower fan", "price": 35 },
-# ]
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
 
 
 #-----------------------------------------------
 # Solution Goes Here ->
+def total_cost(card, location):
+    result = 0     
+    loc_list_10 = ["HI", "AK", "TX", "FL"]
+    loc_list_5 = ["AL", "MS", "NV", "IL"]
+    # print(card[0].get('price'))
+    total_no_tax = 0
+    for key in range(len(card)):
+        total_no_tax += card[key].get('price')
+    
+    print(total_no_tax)
+    includes_tax = total_no_tax * 0.085 + total_no_tax
+    shippint_cost = 0 
+    for x in loc_list_10:
+        if x == location:
+            shippint_cost =  10
+    for y in loc_list_5:
+        if y == location:
+            shippint_cost = 5
+    result = includes_tax + shippint_cost
+    return result
+
+print(total_cost(shopping_cart,'HI'))
 #-----------------------------------------------
 
 
