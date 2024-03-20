@@ -183,7 +183,7 @@ def total_cost(card, location):
     result = includes_tax + shippint_cost
     return result
 
-print(total_cost(shopping_cart,'HI'))
+print(f"Total cost for HI shipping : {total_cost(shopping_cart,'HI')}")
 #-----------------------------------------------
 
 
@@ -201,6 +201,25 @@ print(total_cost(shopping_cart,'HI'))
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def fizz_buzz(number):
+    if not isinstance(number, (int)):
+        return f"{number} is not a Number"
+    if number > 0 and  number < 51:
+        if number%3 == 0 and number%5 == 0:
+            return "FizzBuzz"
+        elif number%3 == 0:
+            return "Fizz"
+        elif number%5 == 0:
+            return "Buzz"
+        else:
+            return " "
+        
+print(fizz_buzz(10))
+print(fizz_buzz(30))
+print(fizz_buzz(18))
+print(fizz_buzz(22))
+print(fizz_buzz("ham_sandwich"))
 #-----------------------------------------------
 
 
@@ -240,4 +259,26 @@ print(total_cost(shopping_cart,'HI'))
 
 #-----------------------------------------------
 # Solution Goes Here - >
+print("=================================")
+def chessboard_creator(row,column):
+    
+    white_space = "O"
+    black_space = "X"
+    cell_list = []
+   
+    
+    # Row print
+    for r in range(row):
+        row_pattern = []
+        for c in range(column):
+            # row_pattern.append(c)
+            # print(row_pattern)
+            if c + r % 2 == 0:
+                row_pattern.append(white_space)
+            elif c + r % 2 != 0:
+                row_pattern.append(black_space)
+            print(row_pattern)
+        cell_list.append(row_pattern)
+    return cell_list    
+print(chessboard_creator(3,7))
 #-----------------------------------------------
