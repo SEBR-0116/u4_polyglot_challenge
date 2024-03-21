@@ -13,7 +13,27 @@
 # add("peanut_butter", "marshmellow_fluff") //=> NaN
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def add_list(*args):
+    if not args:
+        return 0
+    
+    total = 0
+    
+    for num in args:
+
+        if isinstance(num, (int, float)):
+            total += num
+        else:
+            return "NaN"
+    
+    
+    return total
+
+
+print(add_list(1, 2, 3))  
+print(add_list())        
+print(add_list(1, 2, "three"))  
+
 #-----------------------------------------------
 
 
@@ -30,7 +50,18 @@
 # remove_ends('a'); //=> "" (empty string)
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def remove_ends(string):
+    
+    if len(string) < 3:
+        return ""
+    
+    return string[1:-1]
+
+
+print(remove_ends("hello"))  
+print(remove_ends("python")) 
+print(remove_ends("hi"))    
+
 #-----------------------------------------------
 
 
@@ -49,7 +80,19 @@
 # is_palindrome(''); //=> true
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def is_palindrome(string):
+    cleaned_string = string.lower().replace(" ", "")
+    
+    if len(cleaned_string) <= 1:
+        return True
+    
+    
+    return cleaned_string == cleaned_string[::-1]
+
+print(is_palindrome("radar"))       
+print(is_palindrome("A man a plan a canal Panama")) 
+print(is_palindrome("hello"))        
+
 #-----------------------------------------------
 
 
@@ -67,9 +110,22 @@
 # is_prime(200) //=> false
 
 #-----------------------------------------------
-# Solution goes here ->
-#-----------------------------------------------
+def is_prime(n):
+    if n < 2:
+        return False
+    
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    
+    return True
 
+print(is_prime(2))    #  True
+print(is_prime(17))   #  True
+print(is_prime(15))   #  False
+print(is_prime(1))    #  False
+
+#-----------------------------------------------
 
 
 
@@ -89,7 +145,34 @@
 
 
 #-----------------------------------------------
-# Solution Goes Here ->
+def calculate_total_cost(shopping_cart, homestate):
+    sales_tax_rate = 0.085
+    
+    shipping_fee = 0
+    if homestate in ["HI", "AK", "TX", "FL"]:
+        shipping_fee = 10
+    elif homestate in ["AL", "MS", "NV", "IL"]:
+        shipping_fee = 5
+    
+
+    subtotal = sum(item["price"] for item in shopping_cart)
+    total_cost_before_shipping = subtotal + (subtotal * sales_tax_rate)
+    total_cost = total_cost_before_shipping + shipping_fee
+    
+    return total_cost
+
+shopping_cart = [ 
+    {"item": "headphones", "price": 25},
+    {"item": "speakers", "price": 40 },
+    {"item": "microphone", "price": 70},
+    {"item": "lamp", "price": 15 },
+    {"item": "tower fan", "price": 35 },
+]
+
+homestate = "TX"  
+total_cost = calculate_total_cost(shopping_cart, homestate)
+print("Total cost:", total_cost)
+
 #-----------------------------------------------
 
 
@@ -106,7 +189,22 @@
 # fizz_buzz(ham_sandwich) //=> "ham_sandwich is not a Number"
 
 #-----------------------------------------------
-# Solution Goes Here ->
+def fizz_buzz():
+    for i in range(1, 51):
+        if isinstance(i, int):
+            if i % 3 == 0 and i % 5 == 0:
+                print("FizzBuzz")
+            elif i % 3 == 0:
+                print("Fizz")
+            elif i % 5 == 0:
+                print("Buzz")
+            else:
+                print(i)
+        else:
+            return "is not a number"
+
+fizz_buzz()
+
 #-----------------------------------------------
 
 
@@ -145,5 +243,25 @@
 
 
 #-----------------------------------------------
-# Solution Goes Here - >
+def chess_board(rows, columns):
+    board = []
+    
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            if (i + j) % 2 == 0:
+                row.append("O")
+            else:
+                row.append("X")
+        board.append(row)
+    return board
+
+rows = 6
+columns = 4
+print(chess_board(rows, columns))
+
+rows = 3
+columns = 7
+print(chess_board(rows, columns))
+
 #-----------------------------------------------
