@@ -14,6 +14,22 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def add_list(list):
+    if len(list) == 0:
+        return 0
+    else:
+        for x in list:
+            if isinstance(x,(int,float)):
+                return sum(list)
+            else:
+                return 'NaN'
+
+print(add_list([]))
+print(add_list([7,50,1.23]))
+print(add_list([7,50,-1.23]))
+print(add_list(['a','b','c']))
+    
+    
 #-----------------------------------------------
 
 
@@ -31,6 +47,14 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def remove_ends(str1):
+    if len(str1) < 3:
+            return ''
+    else:
+        return str1[1:len(str1)-1]
+
+print(remove_ends("Led Zeppelin Rules"))        
+    
 #-----------------------------------------------
 
 
@@ -50,6 +74,31 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+def is_palindrome(word):
+    list_no_spaces =''
+    if len(word) < 2:
+        return True
+    else:
+        for x in word:
+            if x != ' ':
+                list_no_spaces += x.lower()
+        
+        y = 0 
+        z = len(list_no_spaces) -1
+        
+        while y < z:
+            if list_no_spaces[y] != list_no_spaces[z]:
+                return False
+            y += 1
+            z -= 1
+        return True
+        
+    # print(list_no_spaces)
+print(is_palindrome('app l pp a'))
+print(is_palindrome('SEI Rocks'))
+print(is_palindrome('rotor'))
+print(is_palindrome('A nut for a jar of tuna'))
+print(is_palindrome(''))
 #-----------------------------------------------
 
 
@@ -68,6 +117,27 @@
 
 #-----------------------------------------------
 # Solution goes here ->
+
+def isPrime(input_num):
+    x = 1
+    if input_num <= 1:
+        return False
+        
+    for x in range(2,input_num -1):
+        if input_num % x == 0:
+            print(f"test  {input_num%x}")
+            return False
+    print(f"test  {input_num%x}")
+    return True
+            
+print(f"29 is prime : {isPrime(29)}")
+print(f"42 is prime : {isPrime(42)}")
+print(f"141 is prime : {isPrime(141)}")
+print(f"2 is prime : {isPrime(2)}")
+print(f"3 is prime : {isPrime(3)}")
+print(f"4 is prime : {isPrime(4)}")
+print(f"200 is prime : {isPrime(200)}")
+
 #-----------------------------------------------
 
 
@@ -75,21 +145,45 @@
 
 # Challenge 5: total_checkout_cost
 
-# Prompt -> Using this list of dictionary items, write a function to calculate the total cost if there is an 8.5% sales tax attached to each item. Then set up a conditional that adds a $10 Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. All other states recieve free shipping. 
+# Prompt -> Using this list of dictionary items, write a function to calculate the total cost if there is an 8.5% sales tax attached to each item.
+# Then set up a conditional that adds a $10 Shipping Fee if the user lives in HI, AK, TX, or FL, a $5 Fee for AL, MS, NV, or IL. 
+# All other states recieve free shipping. 
 
 # Your function should take the list and the user's homestate as arguments
 
-# shopping_cart = [ 
-#   {"item": "headphones", "price": 25},
-#   {"item": "speakers", "price": 40 },
-#   {"item": "microphone", "price": 70},
-#   {"item": "lamp", "price": 15 },
-#   {"item": "tower fan", "price": 35 },
-# ]
+shopping_cart = [ 
+  {"item": "headphones", "price": 25},
+  {"item": "speakers", "price": 40 },
+  {"item": "microphone", "price": 70},
+  {"item": "lamp", "price": 15 },
+  {"item": "tower fan", "price": 35 },
+]
 
 
 #-----------------------------------------------
 # Solution Goes Here ->
+def total_cost(card, location):
+    result = 0     
+    loc_list_10 = ["HI", "AK", "TX", "FL"]
+    loc_list_5 = ["AL", "MS", "NV", "IL"]
+    # print(card[0].get('price'))
+    total_no_tax = 0
+    for key in range(len(card)):
+        total_no_tax += card[key].get('price')
+    
+    print(total_no_tax)
+    includes_tax = total_no_tax * 0.085 + total_no_tax
+    shippint_cost = 0 
+    for x in loc_list_10:
+        if x == location:
+            shippint_cost =  10
+    for y in loc_list_5:
+        if y == location:
+            shippint_cost = 5
+    result = includes_tax + shippint_cost
+    return result
+
+print(f"Total cost for HI shipping : {total_cost(shopping_cart,'HI')}")
 #-----------------------------------------------
 
 
@@ -107,6 +201,25 @@
 
 #-----------------------------------------------
 # Solution Goes Here ->
+
+def fizz_buzz(number):
+    if not isinstance(number, (int)):
+        return f"{number} is not a Number"
+    if number > 0 and  number < 51:
+        if number%3 == 0 and number%5 == 0:
+            return "FizzBuzz"
+        elif number%3 == 0:
+            return "Fizz"
+        elif number%5 == 0:
+            return "Buzz"
+        else:
+            return " "
+        
+print(fizz_buzz(10))
+print(fizz_buzz(30))
+print(fizz_buzz(18))
+print(fizz_buzz(22))
+print(fizz_buzz("ham_sandwich"))
 #-----------------------------------------------
 
 
@@ -146,4 +259,27 @@
 
 #-----------------------------------------------
 # Solution Goes Here - >
+print("=================================")
+def chessboard_creator(row,column):
+    
+    white_space = "O"
+    black_space = "X"
+    cell_list = []
+   
+    
+    # Row print
+    for r in range(row):
+        row_pattern = []
+        for c in range(column):
+            # row_pattern.append(c)
+            # print(row_pattern)
+            if (c + r) % 2 == 0:
+                row_pattern.append(white_space)
+            else:
+                row_pattern.append(black_space)
+            print(row_pattern)
+        cell_list.append(row_pattern)
+    return cell_list    
+print(chessboard_creator(3,7))
+print(chessboard_creator(6,4))
 #-----------------------------------------------
